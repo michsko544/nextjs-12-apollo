@@ -1,0 +1,14 @@
+query Novels {
+  novels {
+    authors {
+      id
+      name
+      novelId
+    }
+    createdAt
+    image
+    title
+    updatedAt
+    id
+  }
+}

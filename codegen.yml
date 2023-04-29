@@ -1,0 +1,51 @@
+overwrite: true
+schema: graphql/schema.graphql
+documents: "graphql/*.graphql"
+generates:
+  generated/types.ts:
+    plugins:
+      - add:
+          content: |-
+            // THIS FILE IS GENERATED WITH `pnpm generate`
+      - "typescript"
+      - "typescript-operations"
+  generated/index.ts:
+    preset: import-types
+    presetConfig:
+      typesPath: ./types
+    plugins:
+      - add:
+          content: |-
+            // THIS FILE IS GENERATED WITH `pnpm generate`
+      - "typescript-resolvers"
+  generated/hooks.tsx:
+    preset: import-types
+    presetConfig:
+      typesPath: ./types
+    plugins:
+      - add:
+          content: |-
+            // THIS FILE IS GENERATED WITH `pnpm generate`
+      - "typescript-operations"
+      - "typescript-react-apollo"
+    config:
+      useTypeImports: true
+      dedupeOperationSuffix: true
+  generated/page.tsx:
+    preset: import-types
+    presetConfig:
+      typesPath: ./types
+    plugins:
+      - add:
+          content: |-
+            // THIS FILE IS GENERATED WITH `pnpm generate`
+      - "graphql-codegen-apollo-next-ssr"
+    config:
+      reactApolloVersion: 3
+      dedupeOperationSuffix: true
+      importDocumentNodeExternallyFrom: ./hooks
+      documentMode: external
+      apolloClientInstanceImport: "../graphql/apolloClient"
+  ./graphql.schema.json:
+    plugins:
+      - "introspection"
