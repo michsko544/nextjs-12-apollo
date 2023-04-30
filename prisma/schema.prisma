@@ -11,17 +11,25 @@ datasource db {
 }
 
 model Novel {
-  id        String   @id @default(uuid())
+  id        String            @id @default(uuid())
   title     String
   image     String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  author    Author[]
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+  authors   AuthorsOnNovels[]
 }
 
 model Author {
-  id      String  @id @default(uuid())
-  name    String
-  Novel   Novel?  @relation(fields: [novelId], references: [id])
-  novelId String?
+  id     String            @id @default(uuid())
+  name   String            @unique
+  novels AuthorsOnNovels[]
+}
+
+model AuthorsOnNovels {
+  novel    Novel  @relation(fields: [novelId], references: [id])
+  novelId  String
+  author   Author @relation(fields: [authorId], references: [id])
+  authorId String
+
+  @@id([novelId, authorId])
 }

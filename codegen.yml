@@ -9,6 +9,9 @@ generates:
             // THIS FILE IS GENERATED WITH `pnpm generate`
       - "typescript"
       - "typescript-operations"
+    config:
+      scalars:
+        DateTime: string
   generated/index.ts:
     preset: import-types
     presetConfig:
@@ -18,6 +21,9 @@ generates:
           content: |-
             // THIS FILE IS GENERATED WITH `pnpm generate`
       - "typescript-resolvers"
+    config:
+      contextType: "../prisma/contextType#Context"
+      useIndexSignature: true
   generated/hooks.tsx:
     preset: import-types
     presetConfig:

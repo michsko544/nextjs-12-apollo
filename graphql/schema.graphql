@@ -1,18 +1,21 @@
+scalar DateTime
+
 type Novel {
   id: ID!
   title: String
   image: String
-  createdAt: String
-  updatedAt: String
+  createdAt: DateTime
+  updatedAt: DateTime
   authors: [Author]
 }
 
 type Author {
   id: ID!
-  name: String
-  novelId: String
+  name: String!
+  novels: [Novel]
 }
 
 type Query {
   novels: [Novel]
+  authors: [Author]
 }

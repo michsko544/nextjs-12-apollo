@@ -9,8 +9,6 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  console.log(data);
-
   if (!data) {
     return "No data";
   }

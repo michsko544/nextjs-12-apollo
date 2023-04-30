@@ -3,12 +3,24 @@ query Novels {
     authors {
       id
       name
-      novelId
     }
     createdAt
     image
     title
     updatedAt
     id
+  }
+}
+
+query Authors {
+  authors {
+    id
+    name
+    novels {
+      createdAt
+      id
+      title
+      updatedAt
+    }
   }
 }

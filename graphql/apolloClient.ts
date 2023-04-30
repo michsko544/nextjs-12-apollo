@@ -1,16 +1,15 @@
 import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client";
-import { invariant } from "@apollo/client/utilities/globals";
 
 import type { NormalizedCacheObject } from "@apollo/client";
-import { NextPage } from "next";
 
 export const getApolloClient = (
   _?: unknown,
   initialState?: NormalizedCacheObject
 ) => {
   const isServer = typeof window === "undefined";
-  const uri = process.env["NEXT_PUBLIC_GRAPHQL_URL"];
-  invariant(uri, `Missing NEXT_PUBLIC_GRAPHQL_URL!`);
+  const uri =
+    process.env["NEXT_PUBLIC_GRAPHQL_URL"] ??
+    "http://localhost:3000/api/graphql";
 
   const httpLink = createHttpLink({
     uri,
